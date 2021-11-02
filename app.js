@@ -1,12 +1,15 @@
 require('dotenv').config();
 const express = require('express');
-const routes = require('./routes');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const routes = require('./routes');
 
 const app = express();
 const {PORT} = process.env;
 
 app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(express.json());
 
 // ROUTER
 routes(app);

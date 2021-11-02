@@ -9,8 +9,10 @@ services:
     networks:
       - my-network    
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
-  
+      MYSQL_ROOT_PASSWORD: hamdan
+    volumes:
+    - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    
   phpmyadmin:    
     image: phpmyadmin
     container_name: pma    

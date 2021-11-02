@@ -1,0 +1,1 @@
+sudo cat db.sql | sudo docker exec -i db /usr/bin/mysql -u root --password=my-secret-pw
