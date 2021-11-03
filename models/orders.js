@@ -1,11 +1,27 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('customers', {
+  return sequelize.define('orders', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
+    },
+    admin: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'admin',
+        key: 'id'
+      }
+    },
+    customer: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'customers',
+        key: 'id'
+      }
     },
     firstName: {
       type: DataTypes.STRING(30),
@@ -19,13 +35,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(13),
       allowNull: false
     },
-    gender: {
-      type: DataTypes.ENUM('L','P'),
+    total: {
+      type: DataTypes.BIGINT,
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'customers',
+    tableName: 'orders',
     timestamps: true,
     indexes: [
       {
@@ -34,6 +50,20 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "admin",
+        using: "BTREE",
+        fields: [
+          { name: "admin" },
+        ]
+      },
+      {
+        name: "user",
+        using: "BTREE",
+        fields: [
+          { name: "customer" },
         ]
       },
     ]

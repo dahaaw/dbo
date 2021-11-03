@@ -17,7 +17,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     user: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'admin',
+        key: 'id'
+      }
     },
     agent: {
       type: DataTypes.STRING(100),
@@ -46,6 +50,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "user",
+        using: "BTREE",
+        fields: [
+          { name: "user" },
         ]
       },
     ]

@@ -17,3 +17,8 @@ exports.resError = (res, message, error) => res.status(500).json({
     success: false, 
     message, error
 })
+
+exports.resEmpty = (res) => res.status(200).json({
+    success: false,
+    message: `no data`
+})
