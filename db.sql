@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Waktu pembuatan: 02 Nov 2021 pada 22.47
+-- Waktu pembuatan: 03 Nov 2021 pada 06.13
 -- Versi server: 8.0.26
--- Versi PHP: 7.4.24
+-- Versi PHP: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,6 +61,40 @@ CREATE TABLE `customers` (
   `updatedAt` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `log`
+--
+
+CREATE TABLE `log` (
+  `id` int NOT NULL,
+  `activity` varchar(20) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `user` int NOT NULL,
+  `agent` varchar(100) DEFAULT NULL,
+  `ip` varchar(20) DEFAULT NULL,
+  `request` json DEFAULT NULL,
+  `response` json DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `product`
+--
+
+CREATE TABLE `product` (
+  `id` int NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` text,
+  `price` bigint NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -78,6 +112,18 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -91,6 +137,18 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `customers`
 --
 ALTER TABLE `customers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `log`
+--
+ALTER TABLE `log`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `product`
+--
+ALTER TABLE `product`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
