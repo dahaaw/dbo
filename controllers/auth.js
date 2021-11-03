@@ -1,4 +1,4 @@
-const { admin } = require('../models');
+const { admin, log } = require('../models');
 const { resFail, reSuccess } = require('../helper/response');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -23,4 +23,13 @@ exports.login = async (req, res) => {
 
     res.cookie('token', token);
     reSuccess(res, {token});
+
+    // add activity
+    log.create({
+        activity: 'login',
+        status: 'success',
+        user: user.id,
+        agent: req.headers['user-agent'],
+        ip: req.socket?.remoteAddress
+    });
 }
